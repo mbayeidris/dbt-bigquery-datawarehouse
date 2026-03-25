@@ -1,0 +1,60 @@
+version: 2
+
+models:
+
+  - name: dim_actor
+    description: "Dimension table containing actor information"
+    columns:
+      - name: actor_id
+        description: "Unique identifier for each actor"
+        tests:
+          - not_null
+          - unique
+
+      - name: full_name
+        description: "Full name of the actor"
+        tests:
+          - not_null
+
+  - name: dim_category
+    description: "Dimension table for film categories"
+    columns:
+      - name: category_id
+        description: "Unique identifier for each category"
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Category name (e.g., Action, Comedy, Drama)"
+        tests:
+          - not_null
+
+  - name: fact_film
+    description: "Fact table linking films, actors, and categories"
+    columns:
+      - name: film_id
+        description: "Unique identifier of the film"
+        tests:
+          - not_null
+
+      - name: actor_id
+        description: "Foreign key referencing dim_actor"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_actor')
+              field: actor_id
+
+      - name: category_id
+        description: "Foreign key referencing dim_category"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_category')
+              field: category_id
+
+      - name: number_of_film
+        description: "Number of films associated with the actor and category"
+        tests:
+          - not_null

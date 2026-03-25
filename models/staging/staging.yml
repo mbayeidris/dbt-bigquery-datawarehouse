@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg_actor
+    description: "Staging table for actor"
+    columns:
+      - name: actor_id
+        tests:
+          - not_null
+          - unique
+      - name: first_name
+        tests:
+          - not_null
+      - name: last_name
+        tests:
+          - not_null
+
+  - name: stg_category
+    description: "Staging table for category"
+    columns:
+      - name: category_id
+        tests:
+          - not_null
+          - unique
+      - name: name
+        tests:
+          - not_null
+
+  - name: stg_film_actor
+    description: "Staging table for film_actor"
+    columns:
+      - name: film_id
+        tests:
+          - not_null
+      - name: actor_id
+        tests:
+          - not_null
+
+  - name: stg_film_category
+    description: "Staging table for film_category"
+    columns:
+      - name: film_id
+        tests:
+          - not_null
+      - name: category_id
+        tests:
+          - not_null

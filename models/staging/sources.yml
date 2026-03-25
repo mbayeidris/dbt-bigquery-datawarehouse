@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: source            # Source name
+    schema: base_de_donnees          # Dataset name
+    tables:
+      - name: actor
+        description: "actor table in sakila database"
+      - name: category
+        description: "category table in sakila database"
+      - name: film_actor
+        description: "film-actor table in sakila database"
+      - name: film_category
+        description: "film-category table in sakila database"
