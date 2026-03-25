@@ -1,15 +1,77 @@
-Welcome to your new dbt project!
+# dbt BigQuery Data Warehouse
 
-### Using the starter project
+## 📌 Overview
+This project is a modern data warehouse built using **dbt (Data Build Tool)** and **Google BigQuery**.  
+It follows a **layered architecture** with **staging**, **dimension**, and **fact tables**, ensuring data quality, modularity, and maintainability.
 
-Try running the following commands:
-- dbt run
-- dbt test
+## 🛠️ Tools & Technologies
+- **dbt Core 1.11.7** for data modeling, testing, and documentation
+- **Google BigQuery** as the data warehouse
+- **SQL** for transformations
+- **Git & GitHub** for version control
+- Optional: **Looker / Power BI** for dashboards
+
+## 🗂️ Project Structure
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+dbt_core/
+├── analyses/
+├── macros/
+├── models/
+│ ├── staging/
+│ └── marts/
+│ ├── dimensions/
+│ └── fact/
+├── seeds/
+├── snapshots/
+├── tests/
+├── dbt_project.yml
+└── README.md
+
+
+### Layers Explained
+1. **Staging (`stg_`)**  
+   - Cleans and standardizes raw source data  
+   - Examples: `stg_actor`, `stg_category`, `stg_film_actor`, `stg_film_category`
+
+2. **Dimensions (`dim_`)**  
+   - Provides descriptive tables for actors, categories, etc.  
+   - Examples: `dim_actor`, `dim_category`
+
+3. **Fact (`fact_`)**  
+   - Stores measurable data for analytics  
+   - Example: `fact_film`
+
+## ✅ Features
+- **Data Quality Tests**  
+  - `not_null`, `unique`, `relationships`
+- **Documentation**  
+  - dbt docs generated DAG & catalog
+- **Modular SQL Models**  
+  - Uses `ref()` to manage dependencies
+- **Layered Architecture**  
+  - Staging → Marts → Analytics-ready tables
+
+## 🚀 How to Run
+1. Activate your Python virtual environment:
+
+```bash
+& .\dbt-venv\Scripts\Activate.ps1
+Run dbt models:
+dbt run
+Run tests:
+dbt test
+Generate documentation:
+dbt docs generate
+dbt docs serve
+Open DAG and catalog in your browser:
+http://localhost:8080
+📊 DAG & Lineage
+
+The project follows a clear DAG structure:
+
+![DBT DAG](../dbt-dag.png)
+
+sources → staging → marts
+Each model is fully tested
+Dependencies are handled via ref()
