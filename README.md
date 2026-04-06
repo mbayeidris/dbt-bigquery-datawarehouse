@@ -112,6 +112,8 @@ Example:
 
 #### 📊 DAG & Lineage
 
+![DBT DAG](docs/dbt-dag.png)
+
 The project follows a clear dependency structure:
 
 ##### sources → staging → marts
